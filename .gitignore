@@ -1,0 +1,9 @@
+node_modules/
+# CVs subidos por postulantes (no versionar, conservar la carpeta y su .htaccess)
+uploads/cv/*
+!uploads/cv/.htaccess
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/

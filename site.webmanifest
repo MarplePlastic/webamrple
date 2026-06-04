@@ -1,0 +1,14 @@
+{
+  "name": "Marple Chile — Plastic Solution",
+  "short_name": "Marple",
+  "description": "Packagings plásticos a tu medida: termoformado, inyección y film flexible.",
+  "lang": "es-CL",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1c6889",
+  "icons": [
+    { "src": "assets/img/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

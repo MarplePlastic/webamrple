@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-brand-950 font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+  ::selection {
+    @apply bg-brand-200 text-brand-950;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply container mx-auto px-5;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+           text-sm font-semibold transition-all duration-200 focus:outline-none
+           focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-brand-600 text-white shadow-card hover:bg-brand-700 hover:shadow-card-hover;
+  }
+  .btn-light {
+    @apply btn bg-white text-brand-700 ring-1 ring-inset ring-brand-100 hover:ring-brand-300 hover:text-brand-900;
+  }
+  .btn-ghost {
+    @apply btn text-brand-700 hover:bg-brand-50;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1
+           text-xs font-semibold uppercase tracking-wider text-brand-600 ring-1 ring-inset ring-brand-100;
+  }
+
+  .card {
+    @apply rounded-2xl bg-white p-7 shadow-card ring-1 ring-brand-50 transition-all duration-300;
+  }
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-card-hover ring-brand-100;
+  }
+
+  .nav-link {
+    @apply relative text-sm font-medium text-brand-800/80 transition-colors hover:text-brand-900;
+  }
+  .nav-link.is-active {
+    @apply text-brand-700;
+  }
+
+  /* Animaciones al hacer scroll (se activan con JS añadiendo .in-view) */
+  .reveal {
+    @apply opacity-0 translate-y-6 transition-all duration-700 ease-out;
+  }
+  .reveal.in-view {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Barra de progreso de lectura (parte superior) */
+  .scroll-progress {
+    @apply fixed left-0 top-0 z-[60] h-1 w-0 bg-gradient-to-r from-brand-400 to-accent-400;
+    transition: width .1s linear;
+  }
+
+  /* Botón volver arriba */
+  .to-top {
+    @apply fixed bottom-5 left-5 z-50 grid h-11 w-11 place-items-center rounded-full
+           bg-brand-700 text-white shadow-card opacity-0 translate-y-3 pointer-events-none
+           transition-all duration-300 hover:bg-brand-800;
+  }
+  .to-top.is-visible {
+    @apply opacity-100 translate-y-0 pointer-events-auto;
+  }
+
+  /* Acordeón de FAQ */
+  .faq-panel {
+    @apply grid grid-rows-[0fr] transition-all duration-300 ease-out;
+  }
+  .faq-item.open .faq-panel {
+    @apply grid-rows-[1fr];
+  }
+  .faq-item.open .faq-chevron {
+    @apply rotate-180;
+  }
+
+  /* Difuminado lateral de la cinta de productos */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  /* Lightbox de la galería */
+  .lightbox {
+    @apply fixed inset-0 z-[70] hidden place-items-center bg-brand-950/90 p-4 backdrop-blur-sm;
+  }
+  .lightbox.open {
+    @apply grid;
+  }
+  .lightbox img {
+    @apply max-h-[85vh] max-w-[92vw] rounded-2xl shadow-2xl animate-fade-up;
+  }
+  .lightbox-close {
+    @apply absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full
+           bg-white/10 text-white transition hover:bg-white/20;
+  }
+}
+
+/* Respeta la preferencia de menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-float {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

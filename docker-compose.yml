@@ -1,0 +1,12 @@
+# Entorno de desarrollo local para el sitio de Marple Chile.
+# Uso:  docker compose up        ->  http://localhost:8080
+#       docker compose down
+services:
+  web:
+    image: php:8.3-apache
+    container_name: marple-web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html:ro
+    restart: unless-stopped

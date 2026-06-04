@@ -1,0 +1,5 @@
+# Carpeta de CVs subidos: nunca ejecutar código aquí, solo almacenar.
+php_flag engine off
+<FilesMatch "\.(php|phtml|php3|php4|php5|pl|py|cgi|sh)$">
+  Require all denied
+</FilesMatch>

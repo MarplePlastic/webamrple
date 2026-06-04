@@ -1,0 +1,14 @@
+{
+  "name": "marplechile-web",
+  "version": "1.0.0",
+  "description": "Sitio web de Marple Chile - Plastic Solution (PHP + Tailwind CSS)",
+  "private": true,
+  "scripts": {
+    "dev": "tailwindcss -i ./assets/css/input.css -o ./assets/css/style.css --watch",
+    "build": "tailwindcss -i ./assets/css/input.css -o ./assets/css/style.css --minify",
+    "serve": "php -S localhost:8080"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
