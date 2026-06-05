@@ -1,12 +1,51 @@
-# Entorno de desarrollo local para el sitio de Marple Chile.
-# Uso:  docker compose up        ->  http://localhost:8080
-#       docker compose down
+# Entorno de desarrollo/producción local para Marple (sitio + panel admin).
+# Requiere Docker Desktop con virtualización habilitada.
+#   docker compose up -d        ->  Sitio:      http://localhost:8080
+#                                   phpMyAdmin: http://localhost:8081
+#   docker compose down
 services:
   web:
-    image: php:8.3-apache
+    build: ./docker
     container_name: marple-web
     ports:
       - "8080:80"
     volumes:
-      - ./:/var/www/html:ro
+      - ./:/var/www/html
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: marple
+      DB_USER: marple
+      DB_PASS: marple_pass
     restart: unless-stopped
+
+  db:
+    image: mariadb:11
+    container_name: marple-db
+    environment:
+      MARIADB_DATABASE: marple
+      MARIADB_USER: marple
+      MARIADB_PASSWORD: marple_pass
+      MARIADB_ROOT_PASSWORD: root_pass
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin:5
+    container_name: marple-pma
+    environment:
+      PMA_HOST: db
+      UPLOAD_LIMIT: 20M
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  dbdata:

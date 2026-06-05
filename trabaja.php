@@ -6,17 +6,15 @@ $config     = require __DIR__ . '/includes/config.php';
 require __DIR__ . '/includes/icons.php';
 
 /* ---------------------------------------------------------------------------
- * Vacantes disponibles. Edita este arreglo para publicar o quitar cargos.
- * Si lo dejas vacío ([]), la página invita igualmente a enviar el CV.
+ * Vacantes disponibles: se administran desde el panel (/admin/jobs.php).
+ * Si no hay vacantes activas, la página invita igualmente a enviar el CV.
  * ------------------------------------------------------------------------- */
-$jobs = [
-    ['title' => 'Operario/a de Producción', 'type' => 'Jornada completa', 'place' => 'Maipú, RM',
-     'desc' => 'Operación de líneas de termoformado e inyección, cumpliendo estándares de calidad e inocuidad.'],
-    ['title' => 'Técnico/a de Mantención',  'type' => 'Jornada completa', 'place' => 'Maipú, RM',
-     'desc' => 'Mantención preventiva y correctiva de maquinaria industrial de la planta.'],
-    ['title' => 'Analista de Calidad e Inocuidad', 'type' => 'Jornada completa', 'place' => 'Maipú, RM',
-     'desc' => 'Control de procesos y aseguramiento de los estándares de seguridad alimentaria.'],
-];
+require_once __DIR__ . '/includes/db.php';
+try {
+    $jobs = db()->query('SELECT *, description AS `desc` FROM jobs WHERE is_active = 1 ORDER BY sort_order, id')->fetchAll();
+} catch (Throwable $e) {
+    $jobs = [];
+}
 
 $benefits = [
     ['title' => 'Capacitación constante', 'desc' => 'Te formamos en mejora continua y buenas prácticas de manufactura.', 'icon' => 'spark'],

@@ -4,40 +4,43 @@ $page_title = 'Soluciones plásticas a tu medida';
 $page_desc  = 'Marple Chile — tu partner de packagings plásticos a tu medida. Termoformado, inyección y film flexible para la industria alimentaria.';
 $data       = require __DIR__ . '/includes/data.php';
 require __DIR__ . '/includes/icons.php';
+// Galería de productos administrable desde el panel (con respaldo a data.php)
+require_once __DIR__ . '/includes/db.php';
+try {
+    $rows = db()->query('SELECT name, image AS img FROM products WHERE is_active = 1 ORDER BY sort_order, id')->fetchAll();
+    if ($rows) { $data['products'] = $rows; }
+} catch (Throwable $e) { /* respaldo: data.php */ }
 require __DIR__ . '/includes/header.php';
 ?>
 
 <!-- HERO -->
 <section class="relative overflow-hidden bg-brand-950">
-  <div class="absolute inset-0 -z-0 opacity-30" aria-hidden="true">
-    <div class="absolute -left-24 top-0 h-96 w-96 rounded-full bg-brand-500 blur-[120px]"></div>
-    <div class="absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-accent-500 blur-[140px]"></div>
-  </div>
-  <div class="container-page relative grid items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
-    <div class="reveal">
+  <!-- Imagen de fondo -->
+  <img src="assets/img/METALICO_rollo1-1080x725.jpg" alt="" aria-hidden="true"
+       class="absolute inset-0 h-full w-full object-cover">
+  <!-- Capas de oscurecido para legibilidad -->
+  <div class="absolute inset-0 bg-gradient-to-b from-brand-950/85 via-brand-950/60 to-brand-950/85"></div>
+  <div class="absolute inset-0 bg-brand-950/35"></div>
+
+  <div class="container-page relative flex items-center justify-center py-12 text-center lg:min-h-[calc(100vh-5rem)] lg:py-8">
+    <div class="reveal mx-auto w-full max-w-3xl rounded-2xl bg-brand-950/30 p-6 ring-1 ring-white/10 backdrop-blur-sm sm:p-8">
       <span class="eyebrow bg-white/10 text-brand-100 ring-white/15">Plastic Solution · Chile</span>
-      <h1 class="mt-5 font-display text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
-        Tu partner de <span class="bg-gradient-to-r from-brand-300 to-accent-400 bg-clip-text text-transparent">packagings plásticos</span> a tu medida.
+      <h1 class="mt-4 font-display text-4xl font-extrabold uppercase leading-[1.03] tracking-tight text-white sm:text-5xl lg:text-[3.4rem]">
+        Envases plásticos<br><span class="text-brand-300">a tu medida</span>
       </h1>
-      <p class="mt-6 max-w-xl text-lg leading-relaxed text-brand-100/80">
-        Desarrollamos envases bajo la marca de nuestros clientes con altos estándares de
-        seguridad, calidad, inocuidad y legalidad para la industria alimentaria.
+      <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-brand-100/85 sm:text-lg">
+        Desarrollamos packaging para la industria alimentaria bajo la marca de nuestros clientes,
+        con altos estándares de seguridad, calidad e inocuidad.
       </p>
-      <div class="mt-9 flex flex-wrap items-center gap-4">
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
         <a href="contacto.php" class="btn-primary">Solicitar cotización <?= marple_icon('arrow', 'h-4 w-4') ?></a>
         <a href="servicios.php" class="btn-light">Ver servicios</a>
       </div>
-      <dl class="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-white/10 pt-8">
-        <div><dt class="text-2xl font-bold text-white" data-count="3">0</dt><dd class="text-sm text-brand-200/70">Procesos productivos</dd></div>
-        <div><dt class="text-2xl font-bold text-white" data-count="100" data-suffix="%">0</dt><dd class="text-sm text-brand-200/70">A tu medida</dd></div>
-        <div><dt class="text-2xl font-bold text-white">Food</dt><dd class="text-sm text-brand-200/70">Grado alimentario</dd></div>
+      <dl class="mx-auto mt-6 grid max-w-md grid-cols-3 gap-6 border-t border-white/15 pt-4">
+        <div><dt class="text-2xl font-bold text-white" data-count="3">0</dt><dd class="text-sm text-brand-200/80">Procesos productivos</dd></div>
+        <div><dt class="text-2xl font-bold text-white" data-count="100" data-suffix="%">0</dt><dd class="text-sm text-brand-200/80">A tu medida</dd></div>
+        <div><dt class="text-2xl font-bold text-white">Food</dt><dd class="text-sm text-brand-200/80">Grado alimentario</dd></div>
       </dl>
-    </div>
-
-    <div class="reveal relative hidden lg:block">
-      <div class="absolute left-1/2 top-1/2 -z-0 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-400/20 blur-2xl" aria-hidden="true"></div>
-      <img src="assets/img/banner-2.opt.png" alt="Envases plásticos Marple: bolsa doypack, bandeja, tapas y cucharas"
-           class="relative mx-auto w-full max-w-lg animate-float [filter:drop-shadow(0_30px_40px_rgba(0,0,0,.45))]" width="375" height="291">
     </div>
   </div>
   <svg class="pointer-events-none absolute inset-x-0 bottom-0 z-20 w-full" style="height:42px" viewBox="0 0 1440 42" preserveAspectRatio="none" fill="#ffffff" aria-hidden="true">
@@ -62,11 +65,49 @@ require __DIR__ . '/includes/header.php';
   </div>
 </section>
 
+<!-- NUESTRO SISTEMA (fila de íconos) -->
+<section class="container-page py-16 lg:py-20">
+  <div class="reveal mx-auto max-w-2xl text-center">
+    <span class="eyebrow">Nuestro sistema</span>
+    <h2 class="mt-4 text-2xl font-bold uppercase tracking-tight sm:text-3xl">Todo en un solo lugar</h2>
+  </div>
+  <div class="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+    <?php foreach ($data['system'] as $s): ?>
+      <div class="reveal text-center">
+        <span class="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-brand-50 text-brand-600"><?= marple_icon($s['icon'], 'h-8 w-8') ?></span>
+        <h3 class="mt-5 text-base font-bold uppercase tracking-wide"><?= $s['title'] ?></h3>
+        <p class="mt-2 text-sm leading-relaxed text-brand-800/70"><?= $s['desc'] ?></p>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</section>
+
+<!-- SECTORES / INDUSTRIAS -->
+<section class="bg-brand-50 py-20 lg:py-24">
+  <div class="container-page">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <span class="eyebrow">Sectores</span>
+      <h2 class="mt-4 text-3xl font-bold uppercase tracking-tight sm:text-4xl">Industrias que atendemos</h2>
+      <p class="mt-4 text-brand-800/70">Soluciones de packaging para cada segmento de la industria alimentaria.</p>
+    </div>
+    <div class="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3">
+      <?php foreach ($data['sectors'] as $s): ?>
+        <article class="reveal group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-card">
+          <img src="<?= $s['img'] ?>" alt="Packaging para <?= htmlspecialchars($s['name']) ?>" loading="lazy"
+               class="h-full w-full object-cover transition duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-950/85 via-brand-950/25 to-transparent"></div>
+          <h3 class="absolute inset-x-0 bottom-0 p-5 text-base font-bold uppercase tracking-wide text-white sm:text-lg"><?= htmlspecialchars($s['name']) ?></h3>
+        </article>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICIOS -->
 <section class="container-page py-20 lg:py-28">
   <div class="reveal mx-auto max-w-2xl text-center">
     <span class="eyebrow">Nuestros servicios</span>
-    <h2 class="mt-4 text-3xl font-bold sm:text-4xl">Procesos que dan forma a tus ideas</h2>
+    <h2 class="mt-4 text-3xl font-bold uppercase tracking-tight sm:text-4xl">Procesos que dan forma a tus ideas</h2>
     <p class="mt-4 text-brand-800/70">Tecnología y control de calidad en cada etapa, desde la lámina hasta el producto terminado.</p>
   </div>
 
@@ -100,7 +141,7 @@ require __DIR__ . '/includes/header.php';
   <div class="container-page relative z-10">
     <div class="reveal mx-auto max-w-2xl text-center">
       <span class="eyebrow bg-white/10 text-brand-100 ring-white/15">Productos</span>
-      <h2 class="mt-4 text-3xl font-bold text-white sm:text-4xl">Envases que ya fabricamos</h2>
+      <h2 class="mt-4 text-3xl font-bold uppercase tracking-tight text-white sm:text-4xl">Envases que ya fabricamos</h2>
       <p class="mt-4 text-brand-100/70">Potes, bolsas, tapas, cucharas y films flexibles desarrollados a la medida de cada cliente.</p>
     </div>
 
@@ -136,7 +177,7 @@ require __DIR__ . '/includes/header.php';
     <div class="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:items-start">
       <div class="reveal lg:sticky lg:top-28">
         <span class="eyebrow">Por qué Marple</span>
-        <h2 class="mt-4 text-3xl font-bold sm:text-4xl">Comprometidos con crear soluciones de calidad</h2>
+        <h2 class="mt-4 text-3xl font-bold uppercase tracking-tight sm:text-4xl">Comprometidos con crear soluciones de calidad</h2>
         <p class="mt-4 text-brand-800/70">
           Desarrollamos una mejora continua en todos nuestros productos, manteniendo altos estándares
           de seguridad, calidad, inocuidad y legalidad.
@@ -171,7 +212,7 @@ $faqs = [
   <div class="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start">
     <div class="reveal lg:sticky lg:top-28">
       <span class="eyebrow">Preguntas frecuentes</span>
-      <h2 class="mt-4 text-3xl font-bold sm:text-4xl">Resolvemos tus dudas</h2>
+      <h2 class="mt-4 text-3xl font-bold uppercase tracking-tight sm:text-4xl">Resolvemos tus dudas</h2>
       <p class="mt-4 text-brand-800/70">¿Tienes otra consulta? Escríbenos y te respondemos a la brevedad.</p>
       <a href="contacto.php" class="btn-primary mt-6">Contáctanos <?= marple_icon('arrow', 'h-4 w-4') ?></a>
     </div>

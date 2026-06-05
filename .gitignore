@@ -1,7 +1,12 @@
 node_modules/
+# Credenciales de base de datos (locales)
+config/db.local.php
 # CVs subidos por postulantes (no versionar, conservar la carpeta y su .htaccess)
 uploads/cv/*
 !uploads/cv/.htaccess
+# Imágenes subidas desde el panel (no versionar, conservar la carpeta y su .htaccess)
+assets/img/uploads/*
+!assets/img/uploads/.htaccess
 .DS_Store
 Thumbs.db
 *.log

@@ -1,8 +1,14 @@
 <?php
 /**
- * Configuración global del sitio Marple Chile.
- * Datos de contacto y metadatos centralizados para reutilizar en todas las páginas.
+ * Configuración global del sitio Marple.
+ * Los datos de contacto/horario/redes se leen de la base de datos (tabla settings)
+ * si está disponible; si no, se usan los valores por defecto de abajo.
  */
+require_once __DIR__ . '/db.php';
+
+$s = settings(); // [] si la BD no está disponible
+
+$address = $s['contact_address'] ?? 'Sta. Marta 1051, Maipú, Región Metropolitana';
 
 return [
     'name'        => 'Marple Chile',
@@ -11,24 +17,24 @@ return [
     'url'         => 'https://www.marplechile.cl',
 
     'contact' => [
-        'email'        => 'contacto@marplechile.cl',
-        'phone'        => '+56 9 9504 2803',
-        'phone_raw'    => '56995042803',
-        'address'      => 'Sta. Marta 1051, Maipú, Región Metropolitana',
-        'map_url'      => 'https://www.google.com/maps/search/?api=1&query=Sta.+Marta+1051,+Maip%C3%BA,+Regi%C3%B3n+Metropolitana',
-        'map_embed'    => 'https://www.google.com/maps?q=Sta.%20Marta%201051,%20Maip%C3%BA,%20Regi%C3%B3n%20Metropolitana&output=embed',
+        'email'     => $s['contact_email'] ?? 'contacto@marplechile.cl',
+        'phone'     => $s['contact_phone'] ?? '+56 9 9504 2803',
+        'phone_raw' => $s['contact_phone_raw'] ?? '56995042803',
+        'address'   => $address,
+        'map_url'   => 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode($address),
+        'map_embed' => 'https://www.google.com/maps?q=' . rawurlencode($address) . '&output=embed',
     ],
 
     'hours' => [
-        'Lunes a Jueves' => '8:00 — 18:00',
-        'Viernes'        => '8:00 — 16:00',
-        'Sábado y Domingo' => 'Cerrado',
+        'Lunes a Jueves'   => $s['hours_weekday'] ?? '8:00 — 18:00',
+        'Viernes'          => $s['hours_friday'] ?? '8:00 — 16:00',
+        'Sábado y Domingo' => $s['hours_weekend'] ?? 'Cerrado',
     ],
 
     'social' => [
         'instagram' => [
-            'label' => '@marpleplasticsolutiongroup',
-            'url'   => 'https://www.instagram.com/marpleplasticsolutiongroup/',
+            'label' => $s['instagram_label'] ?? '@marpleplasticsolutiongroup',
+            'url'   => $s['instagram_url'] ?? 'https://www.instagram.com/marpleplasticsolutiongroup/',
         ],
     ],
 

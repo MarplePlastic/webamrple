@@ -33,12 +33,31 @@ return [
     ],
 
     'values' => [
-        ['title' => 'Clientes',          'desc' => 'Mantenemos una comunicación abierta y colaboramos en el desarrollo de envases según especificaciones técnicas.', 'icon' => 'handshake'],
-        ['title' => 'Seguridad laboral', 'desc' => 'Proporcionamos un ambiente seguro e identificamos los riesgos en producción.', 'icon' => 'shield'],
-        ['title' => 'Medio ambiente',    'desc' => 'Operamos minimizando nuestro impacto ambiental en cada etapa del proceso.', 'icon' => 'leaf'],
-        ['title' => 'Calidad',           'desc' => 'Utilizamos materias primas de alta calidad con controles rigurosos.', 'icon' => 'check'],
-        ['title' => 'Talento humano',    'desc' => 'Capacitamos constantemente a nuestros colaboradores en mejora continua y buenas prácticas.', 'icon' => 'users'],
-        ['title' => 'Proveedores',       'desc' => 'Los seleccionamos por su capacidad de cumplir requisitos de seguridad alimentaria.', 'icon' => 'truck'],
+        ['title' => 'Innovación y Calidad',        'desc' => 'Estamos comprometidos con la excelencia en cada producto, garantizando envases seguros, duraderos y funcionales para la industria alimentaria.', 'icon' => 'spark'],
+        ['title' => 'Inocuidad',                   'desc' => 'Priorizamos la seguridad alimentaria en todos nuestros procesos, asegurando que nuestros envases cumplan con los más altos estándares sanitarios.', 'icon' => 'shield'],
+        ['title' => 'Responsabilidad Ambiental',   'desc' => 'Actuamos con conciencia ecológica, promoviendo prácticas sostenibles y el uso responsable de los recursos para proteger el entorno.', 'icon' => 'leaf'],
+        ['title' => 'Transparencia',               'desc' => 'Actuamos con integridad y claridad en nuestras relaciones comerciales y laborales, generando confianza y credibilidad en nuestras partes interesadas.', 'icon' => 'eye'],
+        ['title' => 'Compromiso y Orientación al Cliente', 'desc' => 'Escuchamos, transformamos ideas en soluciones y respondemos con rapidez y cercanía, porque el éxito de nuestros clientes se expande a nuestra organización.', 'icon' => 'handshake'],
+        ['title' => 'Trabajo en Equipo y Especialización', 'desc' => 'Unimos talentos y compartimos conocimientos, fortaleciendo a nuestros equipos y convirtiéndolos en la energía que impulsa la innovación y el desarrollo.', 'icon' => 'users'],
+        ['title' => 'Pasión por verlos en la mesa','desc' => 'Vivimos cada proyecto con orgullo y entusiasmo, al ver que nuestros productos, seguros y de calidad, forman parte de la vida diaria en cada mesa.', 'icon' => 'tray'],
+    ],
+
+    // Sectores / industrias que atiende Marple (mosaico estilo Goglio)
+    'sectors' => [
+        ['name' => 'Bebidas',                'img' => 'assets/img/tf_2-410x354.jpg'],
+        ['name' => 'Lácteos y postres',      'img' => 'assets/img/in_1-410x354.jpg'],
+        ['name' => 'Panadería',              'img' => 'assets/img/Bolsa-Pouch_logo-1080x725.jpg'],
+        ['name' => 'Conservas y congelados', 'img' => 'assets/img/lam_1-410x354.jpg'],
+        ['name' => 'Snacks',                 'img' => 'assets/img/Producto-1-1536x1024.jpg'],
+        ['name' => 'Comida preparada',       'img' => 'assets/img/Pote-Mantequilla-Margarina_-1-1024x1024.jpg'],
+    ],
+
+    // Fila "Nuestro sistema" (columnas con íconos, estilo Goglio)
+    'system' => [
+        ['title' => 'Soluciones a medida',   'desc' => 'Envases diseñados según las especificaciones de cada cliente.', 'icon' => 'spark'],
+        ['title' => 'Procesos productivos',  'desc' => 'Termoformado, inyección y film flexible en una sola planta.',   'icon' => 'cube'],
+        ['title' => 'Calidad e inocuidad',   'desc' => 'Altos estándares de seguridad alimentaria en cada lote.',       'icon' => 'shield'],
+        ['title' => 'Servicio integral',     'desc' => 'Te acompañamos del briefing a la entrega del producto.',         'icon' => 'handshake'],
     ],
 
     // Galería de productos (fotos reales en assets/img)

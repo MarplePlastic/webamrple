@@ -48,6 +48,7 @@ $page_desc  = $page_desc ?? $config['description'];
     '@context' => 'https://schema.org',
     '@type'    => 'LocalBusiness',
     'name'     => $config['name'] . ' — ' . $config['tagline'],
+    'legalName'=> 'Marple Plastic Solution Group S.A.',
     'image'    => $config['url'] . '/assets/img/Logo_MARPLE-150x90.png',
     'url'      => $config['url'],
     'telephone'=> $config['contact']['phone'],

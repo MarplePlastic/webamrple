@@ -27,6 +27,7 @@ $config = $config ?? require __DIR__ . '/config.php';
         <?php foreach ($config['nav'] as $item): ?>
           <li><a href="<?= $item['href'] ?>" class="text-brand-200/80 transition hover:text-white"><?= $item['label'] ?></a></li>
         <?php endforeach; ?>
+        <li><a href="nosotros.php#politica" class="text-brand-200/80 transition hover:text-white">Política de calidad</a></li>
       </ul>
     </div>
 
@@ -57,7 +58,7 @@ $config = $config ?? require __DIR__ . '/config.php';
 
   <div class="border-t border-white/10">
     <div class="container-page flex flex-col items-center justify-between gap-3 py-6 text-xs text-brand-200/70 sm:flex-row">
-      <p>Marple Chile &copy; <?= date('Y') ?>. Todos los derechos reservados.</p>
+      <p>Marple Plastic Solution Group S.A. &copy; <?= date('Y') ?>. Todos los derechos reservados.</p>
       <p>Hecho en Chile · Plastic Solution</p>
     </div>
   </div>
