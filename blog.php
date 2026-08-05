@@ -3,6 +3,7 @@ $current    = 'blog';
 $page_title = 'Blog';
 $page_desc  = 'Noticias y artículos de Marple Chile sobre packaging plástico, inocuidad y procesos productivos.';
 require __DIR__ . '/includes/icons.php';
+require_once __DIR__ . '/includes/img.php';
 require __DIR__ . '/includes/header.php';
 
 /**
@@ -39,7 +40,7 @@ require __DIR__ . '/includes/page-header.php';
       <article class="card card-hover reveal group flex flex-col overflow-hidden p-0">
         <div class="relative h-44 overflow-hidden">
           <?php if (!empty($p['img'])): ?>
-            <img src="<?= htmlspecialchars($p['img']) ?>" alt="<?= htmlspecialchars($p['title']) ?>" loading="lazy"
+            <img src="<?= htmlspecialchars(img_src($p['img'])) ?>" alt="<?= htmlspecialchars($p['title']) ?>" loading="lazy"
                  class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
           <?php else: ?>
             <div class="flex h-full items-center justify-center bg-gradient-to-br from-brand-600 to-brand-900"><?= marple_icon('spark', 'h-10 w-10 text-white/90') ?></div>

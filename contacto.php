@@ -4,6 +4,7 @@ $page_title = 'Contacto';
 $page_desc  = 'Contáctanos para cotizar tu envase plástico a medida. Marple Chile, Maipú, Región Metropolitana.';
 $config     = require __DIR__ . '/includes/config.php';
 require __DIR__ . '/includes/icons.php';
+require_once __DIR__ . '/includes/img.php';
 
 /* --- Procesamiento del formulario (POST al mismo archivo) --- */
 $errors = [];

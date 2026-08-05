@@ -4,6 +4,7 @@ $page_title = 'Soluciones plásticas a tu medida';
 $page_desc  = 'Marple Chile — tu partner de packagings plásticos a tu medida. Termoformado, inyección y film flexible para la industria alimentaria.';
 $data       = require __DIR__ . '/includes/data.php';
 require __DIR__ . '/includes/icons.php';
+require_once __DIR__ . '/includes/img.php';
 // Galería de productos administrable desde el panel (con respaldo a data.php)
 require_once __DIR__ . '/includes/db.php';
 try {
@@ -15,32 +16,46 @@ require __DIR__ . '/includes/header.php';
 
 <!-- HERO -->
 <section class="relative overflow-hidden bg-brand-950">
-  <!-- Imagen de fondo -->
-  <img src="assets/img/METALICO_rollo1-1080x725.jpg" alt="" aria-hidden="true"
-       class="absolute inset-0 h-full w-full object-cover">
-  <!-- Capas de oscurecido para legibilidad -->
-  <div class="absolute inset-0 bg-gradient-to-b from-brand-950/85 via-brand-950/60 to-brand-950/85"></div>
-  <div class="absolute inset-0 bg-brand-950/35"></div>
+  <!-- Fondo: degradado de marca. Antes había una foto estirada de 1080px a
+       todo el ancho (se veía borrosa); ahora la foto va contenida a la
+       derecha, a su resolución real. -->
+  <div class="absolute inset-0 bg-[radial-gradient(120%_120%_at_75%_0%,#1c3b4e_0%,#0e2533_58%,#0a1a24_100%)]"></div>
+  <div class="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-brand-500/10 blur-3xl"></div>
 
-  <div class="container-page relative flex items-center justify-center py-12 text-center lg:min-h-[calc(100vh-5rem)] lg:py-8">
-    <div class="reveal mx-auto w-full max-w-3xl rounded-2xl bg-brand-950/30 p-6 ring-1 ring-white/10 backdrop-blur-sm sm:p-8">
-      <span class="eyebrow bg-white/10 text-brand-100 ring-white/15">Plastic Solution · Chile</span>
-      <h1 class="mt-4 font-display text-4xl font-extrabold uppercase leading-[1.03] tracking-tight text-white sm:text-5xl lg:text-[3.4rem]">
-        Envases plásticos<br><span class="text-brand-300">a tu medida</span>
-      </h1>
-      <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-brand-100/85 sm:text-lg">
-        Desarrollamos packaging para la industria alimentaria bajo la marca de nuestros clientes,
-        con altos estándares de seguridad, calidad e inocuidad.
-      </p>
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
-        <a href="contacto.php" class="btn-primary">Solicitar cotización <?= marple_icon('arrow', 'h-4 w-4') ?></a>
-        <a href="servicios.php" class="btn-light">Ver servicios</a>
+  <div class="container-page relative py-14 lg:flex lg:min-h-[calc(100vh-5rem)] lg:items-center lg:py-16">
+    <div class="grid w-full items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+
+      <div class="reveal text-center lg:text-left">
+        <span class="eyebrow bg-white/10 text-brand-100 ring-white/15">Plastic Solution · Chile</span>
+        <h1 class="mt-4 font-display text-4xl font-extrabold uppercase leading-[1.03] tracking-tight text-white sm:text-5xl lg:text-[3.4rem]">
+          Envases plásticos <br><span class="text-brand-300">a tu medida</span>
+        </h1>
+        <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-brand-100/85 sm:text-lg lg:mx-0">
+          Desarrollamos packaging para la industria alimentaria bajo la marca de nuestros clientes,
+          con altos estándares de seguridad, calidad e inocuidad.
+        </p>
+        <div class="mt-7 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+          <a href="contacto.php" class="btn-primary">Solicitar cotización <?= marple_icon('arrow', 'h-4 w-4') ?></a>
+          <a href="servicios.php" class="btn-light">Ver servicios</a>
+        </div>
+        <!-- Cifras verificables en el propio catálogo del sitio. Cuando haya
+             datos de negocio (años de operación, clientes, toneladas al mes),
+             conviene reemplazarlas: pesan más que estas. -->
+        <dl class="mt-8 grid max-w-md grid-cols-3 gap-6 border-t border-white/15 pt-5 lg:mx-0">
+          <div><dt class="text-2xl font-bold text-white" data-count="3">0</dt><dd class="text-sm text-brand-200/80">Procesos productivos</dd></div>
+          <div><dt class="text-2xl font-bold text-white" data-count="6">0</dt><dd class="text-sm text-brand-200/80">Industrias atendidas</dd></div>
+          <div><dt class="text-2xl font-bold text-white" data-count="8">0</dt><dd class="text-sm text-brand-200/80">Familias de envases</dd></div>
+        </dl>
       </div>
-      <dl class="mx-auto mt-6 grid max-w-md grid-cols-3 gap-6 border-t border-white/15 pt-4">
-        <div><dt class="text-2xl font-bold text-white" data-count="3">0</dt><dd class="text-sm text-brand-200/80">Procesos productivos</dd></div>
-        <div><dt class="text-2xl font-bold text-white" data-count="100" data-suffix="%">0</dt><dd class="text-sm text-brand-200/80">A tu medida</dd></div>
-        <div><dt class="text-2xl font-bold text-white">Food</dt><dd class="text-sm text-brand-200/80">Grado alimentario</dd></div>
-      </dl>
+
+      <div class="reveal">
+        <figure class="relative mx-auto max-w-[540px] overflow-hidden rounded-3xl ring-1 ring-white/10 shadow-card-hover">
+          <img src="assets/img/banner-2.png" width="750" height="563" fetchpriority="high"
+               alt="Envases fabricados por Marple: bolsa doypack, envases con tapa abatible, tapas y cucharas dosificadoras"
+               class="h-full w-full object-cover">
+        </figure>
+      </div>
+
     </div>
   </div>
   <svg class="pointer-events-none absolute inset-x-0 bottom-0 z-20 w-full" style="height:42px" viewBox="0 0 1440 42" preserveAspectRatio="none" fill="#ffffff" aria-hidden="true">
@@ -93,7 +108,7 @@ require __DIR__ . '/includes/header.php';
     <div class="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3">
       <?php foreach ($data['sectors'] as $s): ?>
         <article class="reveal group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-card">
-          <img src="<?= $s['img'] ?>" alt="Packaging para <?= htmlspecialchars($s['name']) ?>" loading="lazy"
+          <img src="<?= img_src($s['img']) ?>" alt="Packaging para <?= htmlspecialchars($s['name']) ?>" loading="lazy"
                class="h-full w-full object-cover transition duration-500 group-hover:scale-110">
           <div class="absolute inset-0 bg-gradient-to-t from-brand-950/85 via-brand-950/25 to-transparent"></div>
           <h3 class="absolute inset-x-0 bottom-0 p-5 text-base font-bold uppercase tracking-wide text-white sm:text-lg"><?= htmlspecialchars($s['name']) ?></h3>
@@ -115,7 +130,7 @@ require __DIR__ . '/includes/header.php';
     <?php foreach ($data['services'] as $key => $s): ?>
       <article class="card card-hover reveal group flex flex-col overflow-hidden p-0">
         <div class="relative h-44 overflow-hidden">
-          <img src="<?= $s['img'] ?>" alt="<?= $s['title'] ?> — Marple Chile" loading="lazy"
+          <img src="<?= img_src($s['img']) ?>" alt="<?= $s['title'] ?> — Marple Chile" loading="lazy"
                class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
           <span class="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-xl bg-white/95 text-brand-600 shadow-card backdrop-blur">
             <?= marple_icon($s['icon'], 'h-6 w-6') ?>
@@ -150,7 +165,7 @@ require __DIR__ . '/includes/header.php';
         <figure tabindex="0" role="button" aria-label="Ampliar imagen: <?= htmlspecialchars($p['name']) ?>"
                 data-lightbox="<?= $p['img'] ?>" data-alt="<?= htmlspecialchars($p['name']) ?>"
                 class="reveal group relative aspect-square cursor-pointer overflow-hidden rounded-2xl bg-white ring-1 ring-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400">
-          <img src="<?= $p['img'] ?>" alt="<?= htmlspecialchars($p['name']) ?>" loading="lazy"
+          <img src="<?= img_src($p['img']) ?>" alt="<?= htmlspecialchars($p['name']) ?>" loading="lazy"
                class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
           <span class="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white/85 text-brand-700 opacity-0 shadow-card backdrop-blur transition group-hover:opacity-100">
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14ZM11 8v6M8 11h6"/></svg>

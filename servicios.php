@@ -4,6 +4,7 @@ $page_title = 'Servicios';
 $page_desc  = 'Servicios de Marple Chile: termoformado, inyección y film flexible para packagings plásticos a medida.';
 $data       = require __DIR__ . '/includes/data.php';
 require __DIR__ . '/includes/icons.php';
+require_once __DIR__ . '/includes/img.php';
 require __DIR__ . '/includes/header.php';
 ?>
 
@@ -24,7 +25,7 @@ require __DIR__ . '/includes/page-header.php';
         <div class="grid items-stretch gap-0 md:grid-cols-2">
           <!-- Visual -->
           <div class="relative min-h-[240px] overflow-hidden bg-brand-900 <?= $reverse ? 'md:order-2' : '' ?>">
-            <img src="<?= $s['img'] ?>" alt="<?= $s['title'] ?> — Marple Chile" loading="lazy"
+            <img src="<?= img_src($s['img']) ?>" alt="<?= $s['title'] ?> — Marple Chile" loading="lazy"
                  class="absolute inset-0 h-full w-full object-cover">
             <span class="absolute left-5 top-5 grid h-12 w-12 place-items-center rounded-2xl bg-white/90 text-brand-700 shadow-card backdrop-blur">
               <?= marple_icon($s['icon'], 'h-6 w-6') ?>

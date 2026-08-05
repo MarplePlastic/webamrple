@@ -4,6 +4,7 @@ $page_title = 'Nosotros';
 $page_desc  = 'Conoce a Marple Chile: misión, visión y valores. Tu partner de packagings plásticos a tu medida para la industria alimentaria.';
 $data       = require __DIR__ . '/includes/data.php';
 require __DIR__ . '/includes/icons.php';
+require_once __DIR__ . '/includes/img.php';
 require __DIR__ . '/includes/header.php';
 ?>
 

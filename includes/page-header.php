@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/img.php';
 /**
  * Encabezado de páginas interiores, con imagen de fondo opcional y overlay.
  * Variables esperadas antes de incluir:
@@ -7,7 +8,7 @@
 ?>
 <section class="relative overflow-hidden bg-brand-950">
   <?php if (!empty($ph_img)): ?>
-    <img src="<?= $ph_img ?>" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-40">
+    <img src="<?= img_src($ph_img) ?>" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-40">
     <div class="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/85 to-brand-900/50"></div>
   <?php endif; ?>
   <div class="container-page relative py-16 lg:py-24">

@@ -18,6 +18,9 @@ $page_desc  = $page_desc ?? $config['description'];
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Marca que el JS está disponible: sin esto, .reveal no oculta nada y la
+       página se ve completa aunque el script no cargue. -->
+  <script>document.documentElement.classList.add('js');</script>
   <title><?= htmlspecialchars($page_title) ?></title>
   <meta name="description" content="<?= htmlspecialchars($page_desc) ?>">
   <meta name="theme-color" content="#1c6889">

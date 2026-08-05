@@ -69,7 +69,9 @@ $config = $config ?? require __DIR__ . '/config.php';
   <button type="button" class="lightbox-close" aria-label="Cerrar">
     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
   </button>
-  <img id="lightbox-img" src="" alt="">
+  <!-- Sin src hasta que el JS ponga la imagen: un src="" es HTML inválido y
+       algunos navegadores vuelven a pedir la página entera. -->
+  <img id="lightbox-img" alt="">
 </div>
 
 <!-- Barra de progreso de lectura -->
