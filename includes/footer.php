@@ -91,6 +91,6 @@ $config = $config ?? require __DIR__ . '/config.php';
   <span class="hidden sm:inline">WhatsApp</span>
 </a>
 
-<script src="assets/js/main.js" defer></script>
+<script src="assets/js/main.js?v=<?= @filemtime(__DIR__ . '/../assets/js/main.js') ?: time() ?>" defer></script>
 </body>
 </html>

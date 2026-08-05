@@ -43,7 +43,9 @@ $page_desc  = $page_desc ?? $config['description'];
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <?php // ?v=fecha del archivo: al recompilar el CSS, el navegador baja la
+        // versión nueva en vez de quedarse con la cacheada. ?>
+  <link rel="stylesheet" href="assets/css/style.css?v=<?= @filemtime(__DIR__ . '/../assets/css/style.css') ?: time() ?>">
 
   <!-- Datos estructurados para buscadores (negocio local) -->
   <script type="application/ld+json">
