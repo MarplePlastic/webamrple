@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/img.php';   // el logo del pie pasa por img_src()
 /** Pie de página compartido + cierre del documento. */
 $config = $config ?? require __DIR__ . '/config.php';
 ?>
@@ -9,7 +10,7 @@ $config = $config ?? require __DIR__ . '/config.php';
     <!-- Marca -->
     <div class="lg:col-span-1">
       <span class="inline-flex rounded-xl bg-white px-4 py-2.5 shadow-card">
-        <img src="assets/img/Logo_MARPLE-150x90.png" alt="Marple Chile — Plastic Solution" class="h-9 w-auto" width="150" height="90">
+        <img src="<?= img_src('assets/img/Logo_MARPLE-150x90.png') ?>" alt="Marple Chile — Plastic Solution" class="h-9 w-auto" width="150" height="90">
       </span>
       <p class="mt-4 max-w-xs text-sm leading-relaxed text-brand-200/80">
         Tu partner de packagings plásticos a tu medida, con altos estándares de seguridad, calidad e inocuidad para la industria alimentaria.

@@ -50,7 +50,7 @@ require __DIR__ . '/includes/header.php';
 
       <div class="reveal">
         <figure class="relative mx-auto max-w-[540px] overflow-hidden rounded-3xl ring-1 ring-white/10 shadow-card-hover">
-          <img src="assets/img/banner-2.png" width="750" height="563" fetchpriority="high"
+          <img src="<?= img_src('assets/img/banner-2.png') ?>" width="750" height="563" fetchpriority="high"
                alt="Envases fabricados por Marple: bolsa doypack, envases con tapa abatible, tapas y cucharas dosificadoras"
                class="h-full w-full object-cover">
         </figure>

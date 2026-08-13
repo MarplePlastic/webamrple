@@ -31,7 +31,14 @@ $page_desc  = $page_desc ?? $config['description'];
   <meta property="og:title" content="<?= htmlspecialchars($page_title) ?>">
   <meta property="og:description" content="<?= htmlspecialchars($page_desc) ?>">
   <meta property="og:locale" content="es_CL">
-  <meta property="og:image" content="<?= $config['url'] ?>/assets/img/Banner-1520x750-1-1290x725.png">
+  <?php // La preview de WhatsApp/Facebook/LinkedIn: 1200x630 y en JPEG. Antes
+        // apuntaba al PNG del banner, de 339 KB y con otra proporción — pesado
+        // para lo que es y recortado por cada red a su gusto. Va en JPEG a
+        // propósito: el soporte de WebP en las previews todavía es disparejo y
+        // una preview rota se ve peor que un archivo más pesado. ?>
+  <meta property="og:image" content="<?= $config['url'] ?>/assets/img/og-marple-1200x630.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="favicon.ico" sizes="any">
