@@ -41,10 +41,23 @@ require __DIR__ . '/includes/header.php';
         <!-- Cifras verificables en el propio catálogo del sitio. Cuando haya
              datos de negocio (años de operación, clientes, toneladas al mes),
              conviene reemplazarlas: pesan más que estas. -->
-        <dl class="mt-8 grid max-w-md grid-cols-3 gap-6 border-t border-white/15 pt-5 lg:mx-0">
-          <div><dt class="text-2xl font-bold text-white" data-count="3">0</dt><dd class="text-sm text-brand-200/80">Procesos productivos</dd></div>
-          <div><dt class="text-2xl font-bold text-white" data-count="6">0</dt><dd class="text-sm text-brand-200/80">Industrias atendidas</dd></div>
-          <div><dt class="text-2xl font-bold text-white" data-count="8">0</dt><dd class="text-sm text-brand-200/80">Familias de envases</dd></div>
+        <?php /* Las cifras son la prueba de lo que promete el título, y en
+                 2xl pasaban desapercibidas contra un H1 enorme. Se agrandan y
+                 el rótulo baja a mayúscula chica: el número manda, la palabra
+                 acompaña. */ ?>
+        <dl class="mt-8 grid max-w-md grid-cols-3 gap-6 border-t border-white/15 pt-6 lg:mx-0">
+          <div>
+            <dt class="text-4xl font-bold leading-none text-white sm:text-5xl" data-count="3">0</dt>
+            <dd class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-brand-200/70">Procesos productivos</dd>
+          </div>
+          <div>
+            <dt class="text-4xl font-bold leading-none text-white sm:text-5xl" data-count="6">0</dt>
+            <dd class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-brand-200/70">Industrias atendidas</dd>
+          </div>
+          <div>
+            <dt class="text-4xl font-bold leading-none text-white sm:text-5xl" data-count="8">0</dt>
+            <dd class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-brand-200/70">Familias de envases</dd>
+          </div>
         </dl>
       </div>
 
@@ -107,11 +120,26 @@ require __DIR__ . '/includes/header.php';
     </div>
     <div class="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3">
       <?php foreach ($data['sectors'] as $s): ?>
-        <article class="reveal group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-card">
+        <?php /* Las seis fotos vienen de sesiones distintas: tres son de
+                 estudio con fondo plano —cian, rojo, verde lima— y tres son
+                 fotografía de ambiente en gris. Puestas juntas no se leían
+                 como un conjunto, sino como seis imágenes sueltas.
+
+                 El tinte azul de marca las empareja: baja la saturación de
+                 cada foto y las lleva a un mismo tono. Al pasar el mouse el
+                 tinte se retira y la foto vuelve a su color, así que no se
+                 pierde nada, solo se ordena. */ ?>
+        <article class="reveal group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-card
+                        ring-1 ring-brand-950/5 transition duration-500 hover:shadow-card-hover">
           <img src="<?= img_src($s['img']) ?>" alt="Packaging para <?= htmlspecialchars($s['name']) ?>" loading="lazy"
-               class="h-full w-full object-cover transition duration-500 group-hover:scale-110">
-          <div class="absolute inset-0 bg-gradient-to-t from-brand-950/85 via-brand-950/25 to-transparent"></div>
-          <h3 class="absolute inset-x-0 bottom-0 p-5 text-base font-bold uppercase tracking-wide text-white sm:text-lg"><?= htmlspecialchars($s['name']) ?></h3>
+               class="h-full w-full object-cover saturate-[.65] transition duration-500
+                      group-hover:scale-110 group-hover:saturate-100">
+          <div class="absolute inset-0 bg-brand-800/35 mix-blend-multiply transition duration-500 group-hover:bg-brand-800/0"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/30 to-transparent"></div>
+          <h3 class="absolute inset-x-0 bottom-0 flex items-center gap-2 p-5 text-base font-bold uppercase tracking-wide text-white sm:text-lg">
+            <span class="h-4 w-1 shrink-0 rounded-full bg-accent-400 transition-all duration-500 group-hover:h-6"></span>
+            <?= htmlspecialchars($s['name']) ?>
+          </h3>
         </article>
       <?php endforeach; ?>
     </div>
@@ -139,8 +167,14 @@ require __DIR__ . '/includes/header.php';
         <div class="flex flex-1 flex-col p-7">
           <h3 class="text-xl font-bold"><?= $s['title'] ?></h3>
           <p class="mt-3 flex-1 text-sm leading-relaxed text-brand-800/70"><?= $s['desc'] ?></p>
-          <a href="servicios.php#<?= $key ?>" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-800">
-            Ver más <?= marple_icon('arrow', 'h-4 w-4') ?>
+          <?php /* py-2 -my-2 agranda el área que responde al dedo sin mover
+                   nada de sitio: el texto queda donde estaba y el toque pasa
+                   de 20 a 44 px de alto. La flecha se corre al pasar el mouse,
+                   que es la señal de que lleva a otra parte. */ ?>
+          <a href="servicios.php#<?= $key ?>"
+             class="group/link mt-4 -my-3 inline-flex items-center gap-1.5 py-3 text-sm font-semibold text-brand-600 hover:text-brand-800">
+            Ver más
+            <span class="transition-transform duration-200 group-hover/link:translate-x-1"><?= marple_icon('arrow', 'h-4 w-4') ?></span>
           </a>
         </div>
       </article>

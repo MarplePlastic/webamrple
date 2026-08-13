@@ -112,7 +112,10 @@ $page_desc  = $page_desc ?? $config['description'];
   <div id="mobile-menu" class="hidden border-t border-brand-50 bg-white lg:hidden">
     <nav class="container-page flex flex-col gap-1 py-4" aria-label="Navegación móvil">
       <?php foreach ($config['nav'] as $key => $item): ?>
-        <a href="<?= $item['href'] ?>" class="rounded-lg px-3 py-2.5 text-base font-medium <?= $current === $key ? 'bg-brand-50 text-brand-700' : 'text-brand-800 hover:bg-brand-50' ?>"><?= $item['label'] ?></a>
+        <?php /* min-h-[44px]: es la altura mínima que se acierta con el dedo
+                 sin apuntar. Con py-2.5 quedaban en 38 px y en el celular uno
+                 termina tocando el enlace de al lado. */ ?>
+        <a href="<?= $item['href'] ?>" class="flex min-h-[44px] items-center rounded-lg px-3 text-base font-medium <?= $current === $key ? 'bg-brand-50 text-brand-700' : 'text-brand-800 hover:bg-brand-50' ?>"><?= $item['label'] ?></a>
       <?php endforeach; ?>
       <a href="contacto.php" class="btn-primary mt-3">Solicitar cotización</a>
     </nav>

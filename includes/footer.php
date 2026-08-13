@@ -15,7 +15,7 @@ $config = $config ?? require __DIR__ . '/config.php';
       <p class="mt-4 max-w-xs text-sm leading-relaxed text-brand-200/80">
         Tu partner de packagings plásticos a tu medida, con altos estándares de seguridad, calidad e inocuidad para la industria alimentaria.
       </p>
-      <a href="<?= $config['social']['instagram']['url'] ?>" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/20">
+      <a href="<?= $config['social']['instagram']['url'] ?>" target="_blank" rel="noopener" class="mt-5 inline-flex min-h-[44px] items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/20">
         <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.62c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 2.76a5.3 5.3 0 1 1 0 10.6 5.3 5.3 0 0 1 0-10.6Zm0 1.62a3.68 3.68 0 1 0 0 7.36 3.68 3.68 0 0 0 0-7.36Zm5.49-2.9a1.24 1.24 0 1 1 0 2.48 1.24 1.24 0 0 1 0-2.48Z"/></svg>
         <?= $config['social']['instagram']['label'] ?>
       </a>
@@ -24,22 +24,22 @@ $config = $config ?? require __DIR__ . '/config.php';
     <!-- Navegación -->
     <div>
       <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Navegación</h3>
-      <ul class="mt-4 space-y-3 text-sm">
+      <ul class="mt-2 text-sm">
         <?php foreach ($config['nav'] as $item): ?>
-          <li><a href="<?= $item['href'] ?>" class="text-brand-200/80 transition hover:text-white"><?= $item['label'] ?></a></li>
+          <li><a href="<?= $item['href'] ?>" class="inline-flex min-h-[44px] items-center text-brand-200/80 transition hover:text-white"><?= $item['label'] ?></a></li>
         <?php endforeach; ?>
-        <li><a href="nosotros.php#politica" class="text-brand-200/80 transition hover:text-white">Política de calidad</a></li>
+        <li><a href="nosotros.php#politica" class="inline-flex min-h-[44px] items-center text-brand-200/80 transition hover:text-white">Política de calidad</a></li>
       </ul>
     </div>
 
     <!-- Contacto -->
     <div>
       <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Contacto</h3>
-      <ul class="mt-4 space-y-3 text-sm text-brand-200/80">
-        <li><a href="https://www.google.com/maps" class="hover:text-white"><?= htmlspecialchars($config['contact']['address']) ?></a></li>
-        <li><a href="mailto:<?= $config['contact']['email'] ?>" class="hover:text-white"><?= $config['contact']['email'] ?></a></li>
-        <li><a href="tel:+<?= $config['contact']['phone_raw'] ?>" class="hover:text-white"><?= $config['contact']['phone'] ?></a></li>
-        <li><a href="<?= $config['contact']['map_url'] ?>" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-brand-300 hover:text-white">Ver mapa →</a></li>
+      <ul class="mt-2 text-sm text-brand-200/80">
+        <li><a href="https://www.google.com/maps" class="inline-flex min-h-[44px] items-center hover:text-white"><?= htmlspecialchars($config['contact']['address']) ?></a></li>
+        <li><a href="mailto:<?= $config['contact']['email'] ?>" class="inline-flex min-h-[44px] items-center hover:text-white"><?= $config['contact']['email'] ?></a></li>
+        <li><a href="tel:+<?= $config['contact']['phone_raw'] ?>" class="inline-flex min-h-[44px] items-center hover:text-white"><?= $config['contact']['phone'] ?></a></li>
+        <li><a href="<?= $config['contact']['map_url'] ?>" target="_blank" rel="noopener" class="inline-flex min-h-[44px] items-center gap-1 text-brand-300 hover:text-white">Ver mapa →</a></li>
       </ul>
     </div>
 
