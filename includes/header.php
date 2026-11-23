@@ -41,11 +41,10 @@ $page_desc  = $page_desc ?? $config['description'];
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="assets/img/icons/icon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple-touch-icon.png">
+  <link rel="icon" href="favicon.ico?v=2" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple-touch-icon.png?v=2">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

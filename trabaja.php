@@ -65,13 +65,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         @move_uploaded_file($cv['tmp_name'], $dest);
 
         // Notificación por correo
-        $to      = $config['contact']['email'];
-        $subject = 'Nueva postulación — ' . $old['nombre'] . ($old['cargo'] ? ' (' . $old['cargo'] . ')' : '');
+        // Las postulaciones van a Recursos Humanos, no al correo de contacto,
+        // y con el CV adjunto: así llega el archivo y no solo su nombre.
+        $to      = 'recursos.humanos@marplechile.cl';
+        // Sin saltos de línea en lo que va a las cabeceras (asunto y Reply-To).
+        $limpio  = static fn (string $v): string => trim(str_replace(["\r", "\n"], ' ', $v));
+        $titulo  = 'Nueva postulación — ' . $limpio($old['nombre']) . ($old['cargo'] ? ' (' . $limpio($old['cargo']) . ')' : '');
+        $subject = '=?UTF-8?B?' . base64_encode($titulo) . '?=';
         $body    = "Nombre: {$old['nombre']}\nEmail: {$old['email']}\nTeléfono: {$old['telefono']}\n"
-                 . "Cargo de interés: {$old['cargo']}\n\nMensaje:\n{$old['mensaje']}\n\nCV: uploads/cv/{$fname}\n";
-        $headers = "From: Web Marple <no-reply@marplechile.cl>\r\nReply-To: {$old['email']}\r\n"
-                 . "Content-Type: text/plain; charset=UTF-8\r\n";
-        @mail($to, $subject, $body, $headers);
+                 . "Cargo de interés: {$old['cargo']}\n\nMensaje:\n{$old['mensaje']}\n\nCV: {$fname}\n";
+        $headers = "From: Web Marple <no-reply@marplechile.cl>\r\nReply-To: " . $limpio($old['email']) . "\r\nMIME-Version: 1.0\r\n";
+
+        $adjunto = is_file($dest) ? @file_get_contents($dest) : false;
+        if ($adjunto === false) {
+            $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+            $mensaje  = $body . "\n(El archivo no se pudo adjuntar.)\n";
+        } else {
+            $tipos = [
+                'pdf'  => 'application/pdf',
+                'doc'  => 'application/msword',
+                'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            ];
+            $corte    = 'marple-' . md5(uniqid('', true));
+            $headers .= "Content-Type: multipart/mixed; boundary=\"{$corte}\"\r\n";
+            $mensaje  = "--{$corte}\r\n"
+                      . "Content-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"
+                      . chunk_split(base64_encode($body)) . "\r\n"
+                      . "--{$corte}\r\n"
+                      . "Content-Type: {$tipos[$ext]}; name=\"{$fname}\"\r\n"
+                      . "Content-Transfer-Encoding: base64\r\n"
+                      . "Content-Disposition: attachment; filename=\"{$fname}\"\r\n\r\n"
+                      . chunk_split(base64_encode($adjunto)) . "\r\n"
+                      . "--{$corte}--\r\n";
+        }
+        @mail($to, $subject, $mensaje, $headers);
 
         $sent = true;
         $old  = ['nombre' => '', 'email' => '', 'telefono' => '', 'cargo' => '', 'mensaje' => ''];
