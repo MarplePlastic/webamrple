@@ -14,66 +14,28 @@ try {
 require __DIR__ . '/includes/header.php';
 ?>
 
-<!-- HERO -->
-<section class="relative overflow-hidden bg-brand-950">
-  <!-- Fondo: degradado de marca. Antes había una foto estirada de 1080px a
-       todo el ancho (se veía borrosa); ahora la foto va contenida a la
-       derecha, a su resolución real. -->
-  <div class="absolute inset-0 bg-[radial-gradient(120%_120%_at_75%_0%,#1c3b4e_0%,#0e2533_58%,#0a1a24_100%)]"></div>
-  <div class="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-brand-500/10 blur-3xl"></div>
-
-  <div class="container-page relative py-14 lg:flex lg:min-h-[calc(100vh-5rem)] lg:items-center lg:py-16">
-    <div class="grid w-full items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
-
-      <div class="reveal text-center lg:text-left">
-        <span class="eyebrow bg-white/10 text-brand-100 ring-white/15">Plastic Solution · Chile</span>
-        <h1 class="mt-4 font-display text-4xl font-extrabold uppercase leading-[1.03] tracking-tight text-white sm:text-5xl lg:text-[3.4rem]">
-          Envases plásticos <br><span class="text-brand-300">a tu medida</span>
-        </h1>
-        <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-brand-100/85 sm:text-lg lg:mx-0">
-          Desarrollamos packaging para la industria alimentaria bajo la marca de nuestros clientes,
-          con altos estándares de seguridad, calidad e inocuidad.
-        </p>
-        <div class="mt-7 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
-          <a href="contacto.php" class="btn-primary">Solicitar cotización <?= marple_icon('arrow', 'h-4 w-4') ?></a>
-          <a href="servicios.php" class="btn-light">Ver servicios</a>
-        </div>
-        <!-- Cifras verificables en el propio catálogo del sitio. Cuando haya
-             datos de negocio (años de operación, clientes, toneladas al mes),
-             conviene reemplazarlas: pesan más que estas. -->
-        <?php /* Las cifras son la prueba de lo que promete el título, y en
-                 2xl pasaban desapercibidas contra un H1 enorme. Se agrandan y
-                 el rótulo baja a mayúscula chica: el número manda, la palabra
-                 acompaña. */ ?>
-        <dl class="mt-8 grid max-w-md grid-cols-3 gap-6 border-t border-white/15 pt-6 lg:mx-0">
-          <div>
-            <dt class="text-4xl font-bold leading-none text-white sm:text-5xl" data-count="3">0</dt>
-            <dd class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-brand-200/70">Procesos productivos</dd>
-          </div>
-          <div>
-            <dt class="text-4xl font-bold leading-none text-white sm:text-5xl" data-count="6">0</dt>
-            <dd class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-brand-200/70">Industrias atendidas</dd>
-          </div>
-          <div>
-            <dt class="text-4xl font-bold leading-none text-white sm:text-5xl" data-count="8">0</dt>
-            <dd class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-brand-200/70">Familias de envases</dd>
-          </div>
-        </dl>
-      </div>
-
-      <div class="reveal">
-        <figure class="relative mx-auto max-w-[540px] overflow-hidden rounded-3xl ring-1 ring-white/10 shadow-card-hover">
-          <img src="<?= img_src('assets/img/banner-2.png') ?>" width="750" height="563" fetchpriority="high"
-               alt="Envases fabricados por Marple: bolsa doypack, envases con tapa abatible, tapas y cucharas dosificadoras"
-               class="h-full w-full object-cover">
-        </figure>
-      </div>
-
-    </div>
+<!-- HERO: el banner en video del sitio anterior (fondo blanco, envases girando).
+     El texto "Plastic Solution" viene dentro del video; el h1 queda para buscadores. -->
+<style>
+  .hero-video{position:relative;background:#fff;overflow:hidden}
+  .hero-video video,.hero-video img{display:block;width:100%;height:auto;aspect-ratio:1920/750}
+  .hero-video__cta{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;padding:1.25rem 1rem 1.5rem;background:#fff}
+  @media (min-width:768px){
+    .hero-video__cta{position:absolute;left:14.5%;top:68%;padding:0;background:none;justify-content:flex-start}
+  }
+  .hero-video .hero-video__poster{display:none}
+  @media (prefers-reduced-motion:reduce){.hero-video video{display:none}.hero-video .hero-video__poster{display:block}}
+</style>
+<section class="hero-video">
+  <h1 class="sr-only">Marple Chile · Plastic Solution — envases plásticos a tu medida</h1>
+  <video autoplay muted loop playsinline preload="auto" poster="assets/img/banner-inicio.jpg" aria-hidden="true">
+    <source src="assets/img/banner-inicio.mp4" type="video/mp4">
+  </video>
+  <img class="hero-video__poster" src="assets/img/banner-inicio.jpg" width="1920" height="750" alt="">
+  <div class="hero-video__cta">
+    <a href="contacto.php" class="btn-primary">Solicitar cotización <?= marple_icon('arrow', 'h-4 w-4') ?></a>
+    <a href="servicios.php" class="btn-light">Ver servicios</a>
   </div>
-  <svg class="pointer-events-none absolute inset-x-0 bottom-0 z-20 w-full" style="height:42px" viewBox="0 0 1440 42" preserveAspectRatio="none" fill="#ffffff" aria-hidden="true">
-    <path d="M0,42 L1440,42 L1440,20 C1080,46 360,-6 0,22 Z"></path>
-  </svg>
 </section>
 
 <!-- CINTA DE PRODUCTOS -->

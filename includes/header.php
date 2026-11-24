@@ -12,6 +12,10 @@ $current = $current ?? 'index';
 $site_name  = $config['name'] . ' — ' . $config['tagline'];
 $page_title = isset($page_title) ? $page_title . ' | ' . $config['name'] : $site_name;
 $page_desc  = $page_desc ?? $config['description'];
+// La dirección oficial de esta página, para que los buscadores no la cuenten
+// varias veces (con y sin www, con y sin .php).
+$pagina    = basename((string) ($_SERVER['SCRIPT_NAME'] ?? 'index.php'));
+$canonical = $config['url'] . '/' . ($pagina === 'index.php' ? '' : $pagina);
 ?>
 <!doctype html>
 <html lang="es" class="scroll-smooth">
@@ -23,10 +27,12 @@ $page_desc  = $page_desc ?? $config['description'];
   <script>document.documentElement.classList.add('js');</script>
   <title><?= htmlspecialchars($page_title) ?></title>
   <meta name="description" content="<?= htmlspecialchars($page_desc) ?>">
+  <link rel="canonical" href="<?= htmlspecialchars($canonical) ?>">
   <meta name="theme-color" content="#1c6889">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="<?= htmlspecialchars($canonical) ?>">
   <meta property="og:site_name" content="<?= htmlspecialchars($config['name']) ?>">
   <meta property="og:title" content="<?= htmlspecialchars($page_title) ?>">
   <meta property="og:description" content="<?= htmlspecialchars($page_desc) ?>">
@@ -42,6 +48,9 @@ $page_desc  = $page_desc ?? $config['description'];
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="favicon.ico?v=2" sizes="any">
+  <?php // Google pide un ícono cuadrado de 48 px o un múltiplo; con solo 16 y 32 se queda con el que tenía guardado. ?>
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/icons/icon-192.png?v=2">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/img/icons/favicon-48.png?v=2">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32.png?v=2">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16.png?v=2">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple-touch-icon.png?v=2">

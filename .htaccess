@@ -19,6 +19,17 @@ DirectoryIndex index.php
   ExpiresByType image/jpeg "access plus 1 month"
 </IfModule>
 
+# Una sola dirección: siempre https y con www. Sin esto el sitio responde
+# igual en cuatro direcciones y los buscadores lo ven duplicado.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^(www\.)?marplechile\.cl$ [NC]
+  RewriteCond %{REQUEST_URI} !^/\.well-known/
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^ https://www.marplechile.cl%{REQUEST_URI} [R=301,L]
+</IfModule>
+
 # URLs limpias opcionales: /servicios -> servicios.php
 <IfModule mod_rewrite.c>
   RewriteEngine On
